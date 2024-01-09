@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Characters</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="Starwars1.jpg" />
+</head>
+<body>
+    <h1>Star Wars Characters</h1>
+    <ul id="characterList"></ul>
+
+    <script>
+        // Obtener datos de la API de Star Wars
+        fetch('https://swapi.dev/api/people/?format=json')
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar los primeros 10 personajes en la lista
+                const characterListElement = document.getElementById('characterList');
+                data.results.slice(0, 20).forEach(character => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${character.name} - Gender: ${character.gender}, Height: ${character.height}cm`;
+                    characterListElement.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+    <script src="indexDB.js"></script>
+    <script src="service-worker.js"></script>
+</body>
+</html>
