@@ -13,7 +13,8 @@ self.addEventListener('install', evento=>{
             return cache.addAll([
                 '/',
                 'index.html',
-                //'offline.html'
+                'offline.html',
+                'Starwars1.png'
 
             ]);
         });

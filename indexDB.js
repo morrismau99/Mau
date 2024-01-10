@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   request.onupgradeneeded = (event) => {
       // Crear la tabla 'characters' si no existe
       const db = event.target.result;
-      const objectStore = db.createObjectStore('characters', { keyPath: 'id' });
+      const objectStore = db.createObjectStore('characters', { keyPath: 'name' });
 
       // Crear un índice por nombre
-      objectStore.createIndex('name', 'name', { unique: false });
+      objectStore.createIndex('name', 'name', { unique: true });
   };
 
   request.onsuccess = (event) => {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       const transaction = db.transaction('characters', 'readwrite');
                       const objectStore = transaction.objectStore('characters');
 
-                      data.slice(0, 20).forEach(character => {
+                      data.results.slice(0, 20).forEach(character => {
                           objectStore.add(character);
                       });
 

@@ -5,7 +5,7 @@ var ubicacionSw='/service-worker.js';
 
 if ( navigator.serviceWorker ) {
 
-    if(url.includes('localhost')){
+    if(url.includes('127.0.0.1')){
         ubicacionSw='/service-worker.js';
     }
     navigator.serviceWorker.register(ubicacionSw);
